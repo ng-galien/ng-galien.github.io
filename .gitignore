@@ -28,3 +28,6 @@ assets/js/dist
 
 #tmp files
 edit-tmp/*
+
+#MacOS files
+.DS_Store
