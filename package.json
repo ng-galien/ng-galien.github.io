@@ -1,0 +1,26 @@
+{
+  "name": "ng-galien.github.io",
+  "version": "1.0.0",
+  "description": "[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen?logo=github)](https://ng-galien.github.io)",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"**/*.md\"",
+    "format-check": "prettier --check \"**/*.md\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-galien/ng-galien.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ng-galien/ng-galien.github.io/issues"
+  },
+  "homepage": "https://github.com/ng-galien/ng-galien.github.io#readme",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
