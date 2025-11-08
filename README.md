@@ -6,6 +6,4 @@ Pages :
 
 Le site utilise le thème
 [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy), propulsé par
-**Jekyll**.  
-Les articles y explorent : l’architecture logicielle, le design orienté graphe,
-le Domain‑Driven Design, et divers projets de recherche ou de développement.
+**Jekyll**.
