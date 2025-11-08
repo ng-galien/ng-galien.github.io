@@ -18,9 +18,7 @@ mermaid: true
 {:.lead}
 SDD en SQL n’est pas plus simple au premier abord. Il déplace la complexité là où elle est légitime (journal de faits, relations et invariants) pour simplifier l’évolution et la maintenance à moyen terme.
 
-> _Note de refonte (GDD → SDD)_ : Le terme « Graph‑Driven Design » est remplacé par **State‑Driven Design (SDD)** pour insister sur la modélisation explicite des **états métier** et **transitions** append‑only. Le graphe reste une implémentation de parcours.
->
-> **Série SDD** : [Intro](/2025/11/01/gdd-intro/) • [Fondations](/2025/11/01/gdd/) • [Axiomes](/2025/11/08/gdd-core/) • [SQL E‑commerce](/2025/11/02/gdd-solves/) • [TODO Neo4j](/2025/11/02/gdd-todo/)
+> **Série SDD** : [Intro](/2025/11/01/sdd-intro/) • [Fondations](/2025/11/01/sdd/) • [Axiomes](/2025/11/08/sdd-core/) • [SQL E‑commerce](/2025/11/02/sdd-solves/)
 
 PostgreSQL suffit pour modéliser ce « graphe conceptuel d’états » via des tables de faits immuables et des contraintes. Pas besoin d’introduire une base orientée graphe pour démarrer.
 
