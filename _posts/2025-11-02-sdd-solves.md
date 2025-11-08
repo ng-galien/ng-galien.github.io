@@ -5,7 +5,7 @@ title: "SDD en SQL : plus de tables, moins de dette"
 description: "Accepter le coût upfront du State‑Driven Design en PostgreSQL pour un modèle e‑commerce durable (états + transitions explicites)."
 date: 2025-11-02 21:00:00 +0100
 last_modified_at: 2025-11-08 12:55:00 +0100
-author: Alexandre Boyer
+author: ab
 categories: [Architecture]
 tags: [State-Driven Design, Graph-Driven Design, SDD, PostgreSQL, Data Modeling, Architecture]
 permalink: /2025/11/02/sdd-solves/
