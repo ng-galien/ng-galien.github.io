@@ -1,0 +1,5 @@
+# Local dev override to disable PWA and its offline cache
+# Applied when running: tools/run.sh --no-cache
+
+pwa:
+  enabled: false

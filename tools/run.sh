@@ -3,6 +3,8 @@
 # Run jekyll serve and then launch the site
 
 prod=false
+incremental=false
+nocache=false
 command="bundle exec jekyll s -l"
 host="127.0.0.1"
 
@@ -12,8 +14,10 @@ help() {
   echo "   bash /path/to/run [options]"
   echo
   echo "Options:"
-  echo "     -H, --host [HOST]    Host to bind to."
-  echo "     -p, --production     Run Jekyll in 'production' mode."
+  echo "     -H, --host [HOST]      Host to bind to."
+  echo "     -p, --production       Run Jekyll in 'production' mode."
+  echo "     -i, --incremental      Enable Jekyll incremental regeneration (faster dev rebuilds)."
+  echo "     -C, --no-cache         Disable PWA cache by overriding config (dev convenience)."
   echo "     -h, --help           Print this help information."
 }
 
@@ -26,6 +30,14 @@ while (($#)); do
     ;;
   -p | --production)
     prod=true
+    shift
+    ;;
+  -i | --incremental)
+    incremental=true
+    shift
+    ;;
+  -C | --no-cache)
+    nocache=true
     shift
     ;;
   -h | --help)
@@ -44,6 +56,15 @@ command="$command -H $host"
 
 if $prod; then
   command="JEKYLL_ENV=production $command"
+fi
+
+if $incremental; then
+  command="$command --incremental"
+fi
+
+# Disable PWA cache by layering a config override in dev
+if $nocache; then
+  command="$command -c _config.yml,_config.nocache.yml"
 fi
 
 if [ -e /proc/1/cgroup ] && grep -q docker /proc/1/cgroup; then
