@@ -14,9 +14,9 @@ timezone: Europe/Paris
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Archivage de notes et veille technologique # the main title of the site
+title: Blog perso sur le dev. # the title of the site
 
-tagline: Blog personnel d'Alexandre Boyer
+tagline: N'engage pas la qualité du code. # the tagline of the site
 
 description: >- # used by seo meta and the atom feed
   Archivage de notes et veille technologique sur la programmation, veille technique, et divers sujets liés au développement logiciel.
@@ -37,11 +37,8 @@ social:
   name: Alexandre Boyer
   email: alexandre.boyer.mail@gmail.com
   links:
-    # The first element serves as the copyright owner's link
-    - https://twitter.com/AlexandreBoyerX # change to your Twitter homepage
-    - https://github.com/ng-galien # change to your GitHub homepage
-    # Uncomment below to add more social links
-    # - https://www.facebook.com/username
+    - https://twitter.com/AlexandreBoyerX
+    - https://github.com/ng-galien/ng-galien.github.io
     - https://www.linkedin.com/in/alexandre-boyer-533427ba
 
 # Site Verification Settings
