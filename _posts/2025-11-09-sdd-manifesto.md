@@ -43,14 +43,15 @@ Si on veut adopter les bonnes pratiques, on va créer des mappers pour isoler le
 ### La donnée est le point d'attraction principal
 
 Lorsque le besoin évolue, la première question que se pose l'équipe est : « Ai-je besoin de rajouter une donnée supplémentaire ? Si oui, dans quelle table ? »  
-Un `is_*` pour un cas particulier, une valeur à l'énumération `status` ou un `JSON` “pour faire anticiper les évolutions futures”.
+Un `is_*` pour un cas particulier, une valeur à l'énumération `status` ou un `JSON` “pour anticiper les évolutions futures”.
 
 Que ce soit pour enrichir le modèle ou pour corriger un comportement mal défini initialement, c'est toujours la donnée qui dicte la faisabilité des évolutions.  
 Si elle est lacunaire ou pas assez expressive, on va devoir la modifier et in fine impacter la persistance.  
+
 > Si le modèle métier ne peut pas être hydraté correctement à partir de la donnée existante, on ne peut pas réaliser la fonctionnalité attendue.
 {:.prompt-warning}
 
-Ce n'est donc pas tant le développeur qui trahit les bonnes pratiques, mais bien la gravité des données qui l'empêche de le faire.  
+Ce n'est donc pas tant le développeur qui trahit les bonnes pratiques, mais bien la gravité des données qui l'empêche de les appliquer.  
 
 On savait déjà, grâce à [Dave McCrory](https://datagravitas.com), que la donnée était porteuse d'une force gravitationnelle de couplage avec elle-même, mais celle-ci s'exerce aussi sur le modèle métier que l'on estimait comme indépendant de la persistance.
 
@@ -58,29 +59,27 @@ L'inversion de dépendance ne fait que déplacer le problème : on reste prisonn
 
 Prenons une table orders avec status ENUM(...), `is_cancelled`, `cancel_reason`, `refunded_at`, `modified_at`.
 Selon les combinaisons, tout est “possible” : payé mais sans date, remboursé sans montant, annulé mais livré.
-La base “accepte”, le métier explose.
+La table s'enrichie et la complexité explose.
 
 >Assumons-le : le *data-first* est la gravité universelle des logiciels et ne sera jamais vaincu.  
-Sortons de l'illusion que nous pourrions construire des systèmes découplés de la data avec une approche pragmatique et réaliste pour limiter les dégâts.
+Sortons de l'illusion que nous pouvons construire des systèmes découplés de la data, adoptons une approche pragmatique et réaliste pour limiter les dégâts.
 {:.prompt-info}
 
 ## L'Agilité comme catalyseur de dette
 
-Dans le contexte d'équipes agiles, on procède par itérations rapides,
-c'est la norme.
+Dans le contexte d'équipes agiles, on procède par itérations rapides, c'est la norme.
 
-Chaque sprint apporte son lot de changements, souvent urgents, et la pression
-pour livrer pousse à des solutions rapides.
+Chaque sprint apporte son lot de changements, souvent urgents, et la pression pour livrer pousse à des solutions rapides.
 
 Comme nous l'avons vu précédemment, le modèle de données sous-jacent est souvent impacté par ces changements.
 Censé être stable, il peut vite devenir un champ de bataille, où l'on ajoute des colonnes, on ajoute des énumérations, certains champs deviennent zombies.
 
 ### Accumulation de compromis
 
-Au fur et à mesure, les tables deviennent donc des **strates de compromis** : champs “optionnels selon le cas”, flags décisionnels, enums plats, `modified_at` fourre-tout. Dans les systèmes matures, des tables comme `Product`, `Customer` ou `Order` grossissent jusqu’à diluer le métier dans un maelström de colonnes.
+Au fur et à mesure, les tables deviennent donc des **strates de compromis** : champs “optionnels selon le cas”, flags décisionnels, enums plats, `modified_at` pour tous. Dans les systèmes matures, des tables comme `Product`, `Customer` ou `Order` grossissent jusqu’à diluer le métier dans un maelström de colonnes.
 
 > On doit alors se fier à l'expérience et à la mémoire collective, plutôt qu'à une structure claire et cohérente.  
-Ne comptons pas sur la documentation pour compenser un modèle confus : elle est toujours obsolète ou incomplète ou les deux.
+Ne comptons pas sur la documentation pour compenser un modèle confus : elle est toujours obsolète, incomplète ou les deux.
 {:.prompt-warning }
 
 ### Impacts sur le code métier
@@ -91,7 +90,7 @@ La maintenance vire à l’archéologie ; un état ajouté appelle des retouches
 
 Même si ce code est contractuellement défini par un repository, la nécessité de garantir une cohérence ne disparaît pas par enchantement, elle se déplace.
 
-Des **idées reçues** aggravent encore la situation : on promet qu’une séparation domaine–persistance permettra “de changer de base sans douleur”. En pratique, ce sont les **ambiguïtés sémantiques** (flags, nullables, enums surchargés) qui coûtent bien plus que l’outillage.
+Des **idées reçues** aggravent encore la situation : on promet qu’une séparation domaine–persistance permettra “de changer de base sans douleur”. En pratique, ce sont les **ambiguïtés sémantiques** (flags, nullables, enums surchargés) qui coûtent bien plus cher au projet.
 
 > L'agilité met en tension le modèle de données, exacerbant les compromis et produisant une dette structurelle sur la donnée.
 {:.prompt-warning }
@@ -113,7 +112,7 @@ Des **idées reçues** aggravent encore la situation : on promet qu’une sépar
 
  On ne traite pas un `is_cancelled` comme un simple champ décoratif. Il décide du récit métier.
 
- > L'état est de facto un citoyen de première classe dans notre système, et doit être traité comme tel dans la couche de persistance.
+ > L'état est de facto un citoyen de première classe dans nos système, et doit être traité comme tel dans la couche de persistance.
 {:.prompt-info }
 
 ### Le State-Driven Design : une modélisation centrée sur les états
@@ -145,13 +144,14 @@ stateDiagram-v2
 
 - **États par facettes.** Les domaines réels combinent des axes orthogonaux (paiement, livraison, conformité…). On parle d’**états exclusifs & exhaustifs par facette**, plutôt que d’un état global explosif.
 - **Température des données.**  
-  *Froid* : ce qui ne casse rien si ça change (nom, email secondaire). 
+  *Froid* : ce qui ne casse rien si ça change (nom, email secondaire).  
   *Chaud* :  ce qui porte un sens métier fort (état, transition, raison, auteur).  
-  Les confondre produit des modèles trompeurs (tables “fourre-tout”).
+  Les confondre produit de l'ambiguïté et de la dette.
 - **L’état est un langage.** Un état porte des **invariants** ; un booléen ou un `status` plat n’en porte pas, d’où les colonnes “optionnelles selon le cas”.
-- **L’histoire est qualifiée.** Un `updated_at` ne raconte rien. Les transitions **nommées** (qui/quand/pourquoi) rendent l’évolution explicable par un non-dev.  
+- **L’histoire est une succession d’états.** Le cycle de vie d’une entité est une succession de transitions entre états, chacun avec ses propres conditions d’entrée et de sortie.
+- **Citoyen du langage métier.** L’état intrinsèquement lié au métier, il porte la sémantique et le language ubiquitaire du domaine.
 
 Tant qu’on traite l’état comme un détail technique (booléens, enums plats, flags optionnels), on fabrique de la dette en continu.
-Le SDD ne demande pas plus de cérémonial, il demande plus d’honnêteté sur ce que représentent vraiment nos données.
+Le SDD ne demande pas plus de cérémonial, il demande plus d’honnêteté sur l'importance du design de la persistance de l'état dans nos logiciels.  
 
 [Comment modéliser les états avec le SDD ? →](/2025/11/08/sdd-core/)
