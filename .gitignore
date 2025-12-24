@@ -31,3 +31,6 @@ edit-tmp/*
 
 #MacOS files
 .DS_Store
+
+#Jkeyll
+jekyll-serve.log
