@@ -1,0 +1,45 @@
+{% comment %}
+  Multilingual SEO: emit hreflang link tags for every translation of the
+  current page (provided by jekyll-polyglot). Plugged into Chirpy via the
+  built-in `metadata-hook.html` extension point — `_includes/head.html`
+  includes this file just before </head>.
+{% endcomment %}
+{% I18n_Headers %}
+
+{% comment %}
+  Browser-language redirect (first visit only).
+  - Fires only on the default-language home page (`/`).
+  - Reads `localStorage.preferred_lang`; if absent, picks the best match
+    between `navigator.language` and `site.languages`. Redirects to the
+    matching `/<lang>/` if it differs from `site.default_lang`.
+  - Every page view records `site.lang` as the user's preference, so
+    subsequent visits skip the redirect (and clicking the footer switcher
+    naturally updates the preference too).
+  - Bots without JS see the FR home as-is; hreflang takes care of SEO.
+{% endcomment %}
+{% if site.lang == site.default_lang and page.url == '/' %}
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('preferred_lang')) return;
+        var nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        var langs = {{ site.languages | jsonify }};
+        var def = {{ site.default_lang | jsonify }};
+        var navBase = nav.split('-')[0];
+        var match = langs.find(function (l) {
+          var c = l.toLowerCase();
+          return nav === c || navBase === c.split('-')[0];
+        });
+        if (match && match !== def) {
+          localStorage.setItem('preferred_lang', match);
+          location.replace('/' + match + '/');
+        }
+      } catch (e) {}
+    })();
+  </script>
+{% endif %}
+<script>
+  (function () {
+    try { localStorage.setItem('preferred_lang', {{ site.lang | jsonify }}); } catch (e) {}
+  })();
+</script>

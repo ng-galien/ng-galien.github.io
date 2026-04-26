@@ -1,6 +1,6 @@
 ---
 layout: post
-lang: fr
+lang: fr-FR
 title: "La vraie histoire d'un logiciel"
 description: "Manifeste pour arrêter de se mentir sur la nature des logiciels que nous construisons."
 date: 2025-11-09 00:00:00 +0100

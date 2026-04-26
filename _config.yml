@@ -3,10 +3,37 @@
 # Import the theme
 theme: jekyll-theme-chirpy
 
-# The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
-# If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
-# otherwise, the layout language will use the default value of 'en'.
-lang: fr
+# The default language for Chirpy's UI strings. Must match a file in
+# `_data/locales/<code>.yml` (gem or local override) or the UI silently
+# falls back to English. The active build language (set by polyglot during
+# per-language passes) is also reflected via `<html lang="…">`.
+lang: fr-FR
+
+# --- Multilingual (jekyll-polyglot) ----------------------------------------
+# Posts/pages declare `lang: <code>` in front matter. Polyglot generates one
+# site per language: the default lives at root URLs, others under `/<code>/`.
+# Translations of the same content share a `page_id` (preferred) or an
+# identical `permalink`.
+languages: ["fr-FR", "en"]
+default_lang: "fr-FR"
+# Files/dirs duplicated as-is (not localized). Adjust if a path needs to
+# diverge per language.
+exclude_from_localization:
+  - assets
+  - feed.xml
+  - sitemap.xml
+  - robots.txt
+  - app.min.js
+  - sw.min.js
+  - 404.html
+parallel_localization: true
+# Tell polyglot to also override `site.lang` (alongside `site.active_lang`)
+# during each language pass, so Chirpy's UI strings switch per language.
+lang_vars: ["lang"]
+
+plugins:
+  - jekyll-polyglot
+# ---------------------------------------------------------------------------
 
 # Change to your timezone › https://zones.arilyn.cc
 timezone: Europe/Paris
@@ -176,9 +203,25 @@ defaults:
       layout: post
       comments: true # Enable comments in posts.
       toc: true # Display TOC column in posts.
+      lang: fr-FR # default language for posts (matches site.lang)
+      lang-exclusive: ["fr-FR"] # don't leak French posts into the EN site
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
       permalink: /posts/:title/
+  # --- Multilingual: per-folder language injection --------------------------
+  # File layout convention: French posts live at the root of `_posts/`,
+  # English translations under `_posts/en/`. Polyglot reads `lang` from
+  # front matter; these defaults just save authors from repeating it.
+  # The `/en/...` URL prefix is added by polyglot itself — do NOT set it
+  # here. `lang-exclusive` keeps each post scoped to its own language tree
+  # (use `page_id: <shared-slug>` in front matter to link translations).
+  - scope:
+      path: _posts/en
+      type: posts
+    values:
+      lang: en
+      lang-exclusive: ["en"]
+  # --------------------------------------------------------------------------
   - scope:
       path: _drafts
     values:
@@ -192,6 +235,7 @@ defaults:
 
 sass:
   style: compressed
+  sourcemap: never # required by jekyll-polyglot on Jekyll 4.x
 
 compress_html:
   clippings: all
@@ -207,7 +251,9 @@ exclude:
   - "*.gemspec"
   - docs
   - tools
+  - to-refine
   - README.md
+  - CLAUDE.md
   - LICENSE
   - purgecss.js
   - "*.config.js"

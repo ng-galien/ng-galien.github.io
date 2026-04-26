@@ -1,0 +1,73 @@
+{% comment %}
+  Local override of Chirpy's footer.html — adds a language switcher row
+  before the original footer markup. Uses jekyll-polyglot's
+  `page.permalink_lang` map to point each link at the matching translation
+  (or to the language home if no translation exists for this page).
+{% endcomment %}
+
+{% if site.languages.size > 1 %}
+  <nav
+    aria-label="Language"
+    class="d-flex justify-content-center justify-content-lg-end gap-3 small text-muted pb-2"
+  >
+    {% for lang in site.languages %}
+      {% capture _path %}{% if page.permalink_lang and page.permalink_lang[lang] %}{{ page.permalink_lang[lang] }}{% else %}/{% endif %}{% endcapture %}
+      {% capture _href %}{{ site.baseurl }}{% if lang != site.default_lang %}/{{ lang }}{% endif %}{{ _path }}{% endcapture %}
+      {% if lang == site.lang %}
+        <span aria-current="true" class="fw-semibold">{{ lang | upcase }}</span>
+      {% else %}
+        <a href="{{ _href }}" hreflang="{{ lang }}">{{ lang | upcase }}</a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+{% endif %}
+
+<!-- The Footer -->
+
+<footer
+  aria-label="Site Info"
+  class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  "
+>
+  <p>
+    {{- '©' }}
+    <time>{{ 'now' | date: '%Y' }}</time>
+
+    {% if site.social.links %}
+      <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>.
+    {% else %}
+      <em class="fst-normal">{{ site.social.name }}</em>.
+    {% endif %}
+
+    {% if site.data.locales[include.lang].copyright.brief %}
+      <span
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="{{ site.data.locales[include.lang].copyright.verbose }}"
+      >
+        {{- site.data.locales[include.lang].copyright.brief -}}
+      </span>
+    {% endif %}
+  </p>
+
+  <p>
+    {%- capture _platform -%}
+      <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+    {%- endcapture -%}
+
+    {%- capture _theme -%}
+      <a
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="v{{ theme.version }}"
+        href="https://github.com/cotes2020/jekyll-theme-chirpy"
+        target="_blank"
+        rel="noopener"
+      >Chirpy</a>
+    {%- endcapture -%}
+
+    {{ site.data.locales[include.lang].meta | replace: ':PLATFORM', _platform | replace: ':THEME', _theme }}
+  </p>
+</footer>

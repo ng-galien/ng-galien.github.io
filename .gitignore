@@ -29,6 +29,9 @@ assets/js/dist
 #tmp files
 edit-tmp/*
 
+# Pre-publish drafts (local only, promoted into _posts/ when ready)
+to-refine/
+
 #MacOS files
 .DS_Store
 

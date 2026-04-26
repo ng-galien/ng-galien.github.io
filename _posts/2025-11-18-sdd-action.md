@@ -1,6 +1,6 @@
 ---
 layout: post
-lang: fr
+lang: fr-FR
 title: "SDD en action : comment appliquer le SDD dans des cas concrets et ce qu'il apporte"
 description: "Deux cas concrets pour appliquer le SDD : stabiliser un legacy avec des événements métiers et sécuriser un workflow d'IA par des états explicites."
 date: 2025-11-18 09:00:00 +0100
