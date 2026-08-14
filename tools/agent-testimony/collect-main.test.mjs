@@ -29,6 +29,7 @@ test("buildMainDocument preserves a free testimony from main", () => {
     "mcp-maket/2026/2026-08-14-maket-main-run-12345.md",
   );
   assert.match(result.content, /source_kind: "main"/);
+  assert.match(result.content, /language: "fr"/);
   assert.match(result.content, /source_commit: "abcdef1234567890"/);
   assert.ok(result.content.endsWith(`${testimony}\n`));
 });

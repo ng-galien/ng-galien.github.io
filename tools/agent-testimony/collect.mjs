@@ -107,6 +107,7 @@ export function buildDocument(event, projectInput) {
     "schema_version: 1",
     'kind: "agent-testimony"',
     'status: "collected"',
+    'language: "fr"',
     `project: ${yaml(project.slug)}`,
     `project_label: ${yaml(project.label)}`,
     `categories: ${yaml(project.categories)}`,

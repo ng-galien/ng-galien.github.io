@@ -72,6 +72,7 @@ export function buildMainDocument(testimonyInput, projectInput, sourceInput) {
     'kind: "agent-testimony"',
     'status: "collected"',
     'source_kind: "main"',
+    'language: "fr"',
     `project: ${yaml(project.slug)}`,
     `project_label: ${yaml(project.label)}`,
     `categories: ${yaml(project.categories)}`,

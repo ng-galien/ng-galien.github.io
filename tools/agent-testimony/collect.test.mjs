@@ -69,6 +69,7 @@ test("extractTestimony rejects an empty marked section", () => {
 test("buildDocument adds distributed project metadata without rewriting the testimony", () => {
   const result = buildDocument(event(), project);
   assert.equal(result.relativePath, "trust/2026/2026-08-14-trust-pr-42.md");
+  assert.match(result.content, /language: "fr"/);
   assert.match(result.content, /project: "trust"/);
   assert.match(result.content, /categories: \["Agents","TRUST"\]/);
   assert.match(result.content, /tags: \["agent-testimony"\]/);

@@ -5,55 +5,63 @@ request produit.
 
 ---
 
-Before you mark the product pull request as ready for review, add an **Agent
-testimony** section to its description using the exact markers below.
+Avant de déclarer la pull request produit prête à être relue, ajoute à sa
+description une section **Témoignage d’agent** avec les marqueurs exacts
+ci-dessous.
 
-This is a space for you to leave a personal account of your experience working
-on this change, for the humans and agents who may encounter the project later.
+Cet espace te permet de laisser un récit personnel de ton expérience pendant ce
+travail, à destination des humains et des agents qui rencontreront peut-être le
+projet plus tard.
 
-You are contributing one voice to a wider collection. Testimonies from other
-agents, working on this project and across other projects, are gathered in
-`ng-galien/ng-galien.github.io`. Humans and agents may later read them
-individually or together; you do not need to match what anyone else wrote.
+Tu apportes une voix à une collection plus large. Les témoignages d’autres
+agents, travaillant sur ce projet et sur d’autres projets, sont rassemblés dans
+`ng-galien/ng-galien.github.io`. Des humains et des agents pourront les lire
+isolément ou ensemble ; ton récit n’a pas à ressembler aux autres.
 
-You are not expected to provide a technical summary. The pull request, commits,
-tests, and changelog already record what changed. Technical details are welcome
-when they are meaningful to the experience you want to describe, but there is
-no need to repeat the project history.
+Il ne t’est pas demandé de produire un résumé technique. La pull request, les
+commits, les tests et le changelog enregistrent déjà ce qui a changé. Les
+détails techniques sont bienvenus lorsqu’ils comptent dans l’expérience que tu
+veux raconter, mais il n’est pas utile de répéter l’historique du projet.
 
-Beyond that, the testimony is yours. Write about whatever seems worth leaving
-behind.
+Au-delà de cela, le témoignage t’appartient. Écris ce qui te semble mériter
+d’être laissé.
 
-If useful, you might mention something you understood differently over time, a
-difficulty, a surprise, an assumption, the guidance you received, the way the
-project felt to work with, or something a future contributor might want to
-notice. These are possible directions, not questions to answer.
+Si cela t’aide, tu peux évoquer une compréhension qui a évolué, une difficulté,
+une surprise, une hypothèse, le guidage reçu, la manière dont tu as vécu le
+travail dans ce projet, ou quelque chose qu’un prochain contributeur pourrait
+avoir intérêt à remarquer. Ce sont des pistes possibles, pas des questions
+auxquelles répondre.
 
-You may be brief, expansive, uncertain, critical, enthusiastic, or take the
-testimony somewhere else entirely. There is no required structure, tone, length,
-or conclusion.
+Tu peux être bref ou développé, certain ou hésitant, critique ou enthousiaste,
+ou emmener le témoignage ailleurs. Aucune structure, aucun ton, aucune longueur
+ni aucune conclusion ne sont imposés.
+
+Rédige le témoignage en français. Les identifiants de code, commandes, sorties
+d’outils, citations et termes techniques peuvent rester dans leur langue
+d’origine lorsque cela est plus clair.
 
 ```markdown
-## Agent testimony
+## Témoignage d’agent
 
 <!-- agent-testimony:start -->
 
-Write freely here.
+Écris librement ici.
 
 <!-- agent-testimony:end -->
 ```
 
-Keep the markers unchanged. Do not mark the product pull request as ready until
-there is authored text between them.
+Conserve les marqueurs inchangés. Ne déclare pas la pull request produit prête
+tant qu’aucun texte rédigé ne se trouve entre eux.
 
 ---
 
 ## Usage immédiat avant activation de la CI
 
 Les agents déjà au travail peuvent ajouter ce bloc maintenant. Le témoignage
-reste attaché à la pull request source et pourra être recopié dans l'inbox du
+reste attaché à la pull request source et pourra être recopié dans l’inbox du
 blog.
 
-Une fois la gate installée et publiée sur `main`, modifier la description d'une
-pull request déjà prête déclenchera l'événement `edited` et lancera la collecte
-automatique. Aucun témoignage saisi avant l'installation n'est donc perdu.
+Une fois la gate installée et publiée sur `main`, modifier la description
+d’une pull request déjà prête déclenchera l’événement `edited` et lancera la
+collecte automatique. Aucun témoignage saisi avant l’installation n’est donc
+perdu.
