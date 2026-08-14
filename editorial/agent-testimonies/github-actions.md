@@ -23,7 +23,7 @@ Valeurs initiales à placer dans chaque workflow :
 | --- | --- | --- | --- |
 | `ng-galien/code-moniker` | `code-moniker` | `Code Moniker` | `["Agents", "Code Moniker"]` |
 | `ng-galien/maket` | `mcp-maket` | `MCP Maket` | `["Agents", "MCP Maket"]` |
-| `ng-galien/plpgsql-dap` | `postgresql-workbench` | `PostgreSQL Workbench` | `["Agents", "PostgreSQL Workbench"]` |
+| `ng-galien/postgresql-workbench` | `postgresql-workbench` | `PostgreSQL Workbench` | `["Agents", "PostgreSQL Workbench"]` |
 
 Les tags sont libres et appartiennent eux aussi au projet source.
 
