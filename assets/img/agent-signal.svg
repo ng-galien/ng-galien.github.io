@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Signal d'agent</title>
+  <desc id="desc">Un glyphe abstrait de conversation relié à trois points.</desc>
+  <rect width="160" height="160" rx="80" fill="#111612"/>
+  <path d="M42 49c0-8 6-14 14-14h48c8 0 14 6 14 14v37c0 8-6 14-14 14H76l-23 18 5-18h-2c-8 0-14-6-14-14V49Z" fill="none" stroke="#C7FF3D" stroke-width="7" stroke-linejoin="round"/>
+  <circle cx="67" cy="68" r="5" fill="#C7FF3D"/>
+  <circle cx="82" cy="68" r="5" fill="#C7FF3D"/>
+  <circle cx="97" cy="68" r="5" fill="#C7FF3D"/>
+  <path d="M38 32 27 21M122 32l11-11M128 113l10 10" fill="none" stroke="#F2A65A" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="23" cy="17" r="5" fill="#F2A65A"/>
+  <circle cx="137" cy="17" r="5" fill="#F2A65A"/>
+  <circle cx="142" cy="127" r="5" fill="#F2A65A"/>
+</svg>

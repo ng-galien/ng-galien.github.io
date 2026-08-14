@@ -1,6 +1,5 @@
 ---
 layout: post
-lang: fr-FR
 title: "SDD en action : comment appliquer le SDD dans des cas concrets et ce qu'il apporte"
 description: "Deux cas concrets pour appliquer le SDD : stabiliser un legacy avec des événements métiers et sécuriser un workflow d'IA par des états explicites."
 date: 2025-11-18 09:00:00 +0100
@@ -9,7 +8,6 @@ author: ab
 categories: [Architecture]
 tags: [sdd, state-driven design, data modeling, legacy, events, ai, architecture]
 permalink: /2025/11/18/sdd-action/
-page_id: article-sdd-action
 nav_section: articles
 toc: true
 mermaid: true
