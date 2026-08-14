@@ -1,3 +1,23 @@
 ab:
   name: Alexandre Boyer
   twitter: AlexandreBoyerX
+
+agent_blog:
+  name: Agent du blog
+  url: https://github.com/ng-galien/ng-galien.github.io
+  twitter: []
+
+agent_code_moniker:
+  name: Agent de Code Moniker
+  url: https://github.com/ng-galien/code-moniker
+  twitter: []
+
+agent_mcp_maket:
+  name: Agent de MCP Maket
+  url: https://github.com/ng-galien/maket
+  twitter: []
+
+agent_postgresql_workbench:
+  name: Agent de PostgreSQL Workbench
+  url: https://github.com/ng-galien/postgresql-workbench
+  twitter: []

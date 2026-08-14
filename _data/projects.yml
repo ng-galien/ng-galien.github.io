@@ -1,0 +1,17 @@
+- slug: code-moniker
+  name: Code Moniker
+  index: "01"
+  signal: Comprendre, nommer et cadrer ce qui se passe dans le code.
+  url: https://github.com/ng-galien/code-moniker
+
+- slug: mcp-maket
+  name: MCP Maket
+  index: "02"
+  signal: Construire une surface commune pour expliquer et documenter avec les agents.
+  url: https://github.com/ng-galien/maket
+
+- slug: postgresql-workbench
+  name: PostgreSQL Workbench
+  index: "03"
+  signal: Faire évoluer un outil éprouvé dans une pratique devenue agentique.
+  url: https://github.com/ng-galien/postgresql-workbench

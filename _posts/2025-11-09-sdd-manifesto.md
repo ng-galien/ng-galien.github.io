@@ -1,6 +1,5 @@
 ---
 layout: post
-lang: fr-FR
 title: "La vraie histoire d'un logiciel"
 description: "Manifeste pour arrêter de se mentir sur la nature des logiciels que nous construisons."
 date: 2025-11-09 00:00:00 +0100
@@ -9,7 +8,6 @@ author: ab
 categories: [Architecture]
 tags: [sdd, state-driven design, data modeling, domain-driven design, ddd, sql, architecture]
 permalink: /2025/11/09/sdd-manifesto/
-page_id: article-sdd-manifesto
 nav_section: articles
 toc: true
 mermaid: true

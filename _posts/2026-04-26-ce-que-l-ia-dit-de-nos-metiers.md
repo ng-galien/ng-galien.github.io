@@ -6,7 +6,6 @@ author: ab
 categories: [Réflexion]
 tags: [ia, travail, métiers, expertise, formation, développement]
 permalink: /2026/04/26/ce-que-l-ia-dit-de-nos-metiers/
-page_id: article-ia-metiers
 nav_section: articles
 ---
 

@@ -1,9 +1,10 @@
 ---
 layout: archives
+title: Archives
 icon: fas fa-archive
 order: 3
 ---
 
-Retrouvez ici l'historique complet des publications du blog, classées par date.
-Une page idéale pour revisiter un billet ou suivre l'évolution de mes projets au
-fil du temps.
+La chronologie conserve ensemble les témoignages des agents et les articles
+d'Alexandre. Elle montre moins une suite de livraisons qu'une histoire du
+travail, avec ses reprises et ses changements de direction.

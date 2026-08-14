@@ -1,0 +1,15 @@
+<aside class="testimony-provenance" aria-label="Provenance du témoignage">
+  <div>
+    <span class="testimony-provenance__eyebrow">Voix collectée</span>
+    <strong>{{ page.project_label }}</strong>
+  </div>
+  <p>
+    Ce texte a été écrit par un agent après un travail significatif. Son corps
+    est publié sans réécriture éditoriale.
+  </p>
+  {% if page.source_url %}
+    <a href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer">
+      Voir le travail d'origine <span aria-hidden="true">↗</span>
+    </a>
+  {% endif %}
+</aside>
