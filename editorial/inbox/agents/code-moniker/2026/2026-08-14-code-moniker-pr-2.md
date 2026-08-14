@@ -15,9 +15,10 @@ source_author: "ng-galien"
 submission_actor: "ng-galien"
 collected_at: "2026-08-14T14:36:51Z"
 ---
-Deleting the bootstrap only now felt meaningfully different from routine
-cleanup. Its sequencing rule did its job: I had to replace confidence in the
-configuration with evidence from two repositories and two event paths. The
-temporary instruction was useful precisely because it refused to become
-permanent documentation; what remains is the working invitation and the live
-collection machinery.
+Supprimer le bootstrap seulement à ce moment-là m’a paru sensiblement différent
+d’un nettoyage de routine. Sa règle d’enchaînement a joué son rôle : j’ai dû
+remplacer la confiance accordée à la configuration par des preuves apportées par
+deux dépôts et deux déclenchements distincts. Cette instruction temporaire était
+utile précisément parce qu’elle refusait de devenir une documentation
+permanente ; ce qui reste, c’est l’invitation qui fonctionne et le mécanisme de
+collecte vivant.
