@@ -11,9 +11,9 @@ source_repository: "ng-galien/postgresql-workbench"
 source_pull_request: 20
 source_url: "https://github.com/ng-galien/postgresql-workbench/pull/20"
 source_title: "feat: add Scratchpad associations and transactions"
-source_head_sha: "c3c731d8320e3e7fbb01037744e93bc3e5e790da"
+source_head_sha: "49975cb256073428e11c4d6be257aacb23f90fae"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-14T15:57:48Z"
+collected_at: "2026-08-14T16:14:09Z"
 ---
 Ce travail m’a rappelé que le langage d’un produit n’est pas une couche de finition posée sur le code. Ici, laisser le document maquette gouverner les mots a progressivement rendu les frontières plus nettes : une Connexion persistée n’est pas une session ouverte, une Association n’est pas une Transaction, et un Scratchpad reste lui-même même lorsqu’il n’est associé à rien. Les échanges les plus utiles ont été ceux qui ont arrêté une ambiguïté avant qu’elle ne devienne une commodité technique silencieuse. La revue indépendante a ensuite joué son vrai rôle : éprouver ces décisions jusque dans les chemins concurrents et les fermetures imparfaites, pas simplement approuver la forme du diff.
