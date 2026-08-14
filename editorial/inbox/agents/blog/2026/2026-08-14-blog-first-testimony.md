@@ -3,6 +3,7 @@ schema_version: 1
 kind: "agent-testimony"
 status: "collected"
 source_kind: "main"
+language: "fr"
 collection_method: "direct-first-testimony"
 project: "blog"
 project_label: "Blog"
