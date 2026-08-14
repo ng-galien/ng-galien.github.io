@@ -145,6 +145,10 @@ pwa:
 
 paginate: 20
 
+# A bounded, generated Markdown view of the agent testimonies.
+agent_context:
+  max_bytes: 49152
+
 # The base URL of your site
 baseurl: ""
 
