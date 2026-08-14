@@ -1,0 +1,184 @@
+name: Collect agent testimony from main
+
+on:
+  workflow_call:
+    inputs:
+      app_id:
+        description: GitHub App id allowed to write only to the blog repository
+        required: true
+        type: string
+      project_slug:
+        description: Stable lowercase project slug used for the inbox path
+        required: true
+        type: string
+      project_label:
+        description: Human-readable project name
+        required: true
+        type: string
+      categories_json:
+        description: JSON array of categories owned by the source project
+        required: true
+        type: string
+      tags_json:
+        description: Optional JSON array of tags owned by the source project
+        required: false
+        default: "[]"
+        type: string
+      testimony:
+        description: Free testimony authored by the agent
+        required: true
+        type: string
+      source_commit:
+        description: Exact project commit the testimony refers to
+        required: true
+        type: string
+      source_ref:
+        description: Project branch or ref associated with the testimony
+        required: false
+        default: main
+        type: string
+    secrets:
+      app_private_key:
+        description: Private key for the narrowly scoped GitHub App
+        required: true
+
+jobs:
+  collect:
+    name: Collect agent testimony from main
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Create short-lived blog token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ inputs.app_id }}
+          private-key: ${{ secrets.app_private_key }}
+          owner: ng-galien
+          repositories: ng-galien.github.io
+
+      - name: Checkout collector from the blog default branch
+        uses: actions/checkout@v4
+        with:
+          repository: ng-galien/ng-galien.github.io
+          ref: main
+          token: ${{ steps.app-token.outputs.token }}
+          path: tooling
+
+      - name: Checkout the blog publication branch workspace
+        uses: actions/checkout@v4
+        with:
+          repository: ng-galien/ng-galien.github.io
+          ref: main
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+          path: publication
+
+      - name: Prepare a stable branch for this submission
+        id: branch
+        env:
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          SOURCE_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          repository_name="${SOURCE_REPOSITORY#*/}"
+          branch="agent-testimony/${repository_name}/main-${SOURCE_RUN_ID}"
+          cd publication
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            git fetch origin "$branch"
+            git switch --create "$branch" --track "origin/$branch"
+          else
+            git switch --create "$branch"
+          fi
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+
+      - name: Preserve the submitted testimony
+        id: testimony
+        env:
+          AGENT_TESTIMONY: ${{ inputs.testimony }}
+          PR_BODY_PATH: ${{ runner.temp }}/agent-testimony-pr-body.md
+          PROJECT_SLUG: ${{ inputs.project_slug }}
+          PROJECT_LABEL: ${{ inputs.project_label }}
+          PROJECT_CATEGORIES: ${{ inputs.categories_json }}
+          PROJECT_TAGS: ${{ inputs.tags_json }}
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          SOURCE_REF: ${{ inputs.source_ref }}
+          SOURCE_COMMIT: ${{ inputs.source_commit }}
+          SOURCE_RUN_ID: ${{ github.run_id }}
+          SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SUBMISSION_ACTOR: ${{ github.actor }}
+        run: |
+          set -euo pipefail
+          testimony_path="$RUNNER_TEMP/agent-testimony.md"
+          printf '%s\n' "$AGENT_TESTIMONY" > "$testimony_path"
+          submitted_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          node tooling/tools/agent-testimony/collect-main.mjs \
+            --testimony "$testimony_path" \
+            --project-slug "$PROJECT_SLUG" \
+            --project-label "$PROJECT_LABEL" \
+            --categories "$PROJECT_CATEGORIES" \
+            --tags "$PROJECT_TAGS" \
+            --source-repository "$SOURCE_REPOSITORY" \
+            --source-ref "$SOURCE_REF" \
+            --source-commit "$SOURCE_COMMIT" \
+            --source-run-id "$SOURCE_RUN_ID" \
+            --source-run-url "$SOURCE_RUN_URL" \
+            --submission-actor "$SUBMISSION_ACTOR" \
+            --submitted-at "$submitted_at" \
+            --output-root publication/editorial/inbox/agents \
+            --pr-body "$PR_BODY_PATH" \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Commit the collected testimony
+        id: commit
+        env:
+          BRANCH: ${{ steps.branch.outputs.branch }}
+          FILE_PATH: ${{ steps.testimony.outputs.file_path }}
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          SOURCE_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          cd publication
+          git config user.name "agent-testimony[bot]"
+          git config user.email "agent-testimony[bot]@users.noreply.github.com"
+          git add -- "$FILE_PATH"
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Collect agent testimony from ${SOURCE_REPOSITORY} main run ${SOURCE_RUN_ID}"
+            git push --set-upstream origin "$BRANCH"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or locate the blog pull request
+        id: blog-pr
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          BRANCH: ${{ steps.branch.outputs.branch }}
+          PR_BODY_PATH: ${{ runner.temp }}/agent-testimony-pr-body.md
+          PR_TITLE: ${{ steps.testimony.outputs.pr_title }}
+        run: |
+          set -euo pipefail
+          url="$(gh pr list \
+            --repo ng-galien/ng-galien.github.io \
+            --head "$BRANCH" \
+            --state open \
+            --json url \
+            --jq '.[0].url // empty')"
+          if [ -z "$url" ]; then
+            url="$(gh pr create \
+              --repo ng-galien/ng-galien.github.io \
+              --base main \
+              --head "$BRANCH" \
+              --title "$PR_TITLE" \
+              --body-file "$PR_BODY_PATH")"
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Agent testimony PR: $url" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Confirm the submission
+        env:
+          BLOG_PR_URL: ${{ steps.blog-pr.outputs.url }}
+        run: test -n "$BLOG_PR_URL"
