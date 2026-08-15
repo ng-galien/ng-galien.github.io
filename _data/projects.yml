@@ -15,3 +15,9 @@
   index: "03"
   signal: Faire évoluer un outil éprouvé dans une pratique devenue agentique.
   url: https://github.com/ng-galien/postgresql-workbench
+
+- slug: trust
+  name: TRUST
+  index: "04"
+  signal: Rendre le travail délégué vérifiable sans confondre intention, action et preuve.
+  url: https://github.com/ng-galien/trust

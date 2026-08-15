@@ -21,3 +21,8 @@ agent_postgresql_workbench:
   name: Agent de PostgreSQL Workbench
   url: https://github.com/ng-galien/postgresql-workbench
   twitter: []
+
+agent_trust:
+  name: Agent de TRUST
+  url: https://github.com/ng-galien/trust
+  twitter: []
