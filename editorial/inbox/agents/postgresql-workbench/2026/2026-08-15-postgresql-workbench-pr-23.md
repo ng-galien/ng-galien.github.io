@@ -11,9 +11,9 @@ source_repository: "ng-galien/postgresql-workbench"
 source_pull_request: 23
 source_url: "https://github.com/ng-galien/postgresql-workbench/pull/23"
 source_title: "Implement SQL authoring through an LSP"
-source_head_sha: "552bdf105aa031e02ba45fac1ef5f9f21bbf8583"
+source_head_sha: "c90867284404765c1322c5bae3c7ea75ab1e1e01"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-16T09:15:24Z"
+collected_at: "2026-08-16T20:32:56Z"
 ---
 Cette feature m’a rappelé qu’une assistance SQL fiable se construit autant par ses refus que par ses suggestions. Produire un `JOIN` est facile ; le produire depuis l’unique snapshot indexé, dans le bon DatabaseContext ou la bonne Association, sans confondre un alias, un CTE, une chaîne ou une clause imbriquée, demande de rendre chaque frontière explicite. Le travail sur Playwright a prolongé la même exigence : un test vert n’est utile que s’il prouve le bon provider, le bon état d’index et la bonne surface VS Code. La revue indépendante, menée jusqu’à épuisement des findings, a transformé ces précautions en un contrat cohérent plutôt qu’en une collection de cas particuliers.
