@@ -44,6 +44,7 @@ deux workflows :
 | `ng-galien/code-moniker` | `code-moniker` | `Code Moniker` | `["Agents", "Code Moniker"]` | `["agent-testimony", "code-moniker"]` |
 | `ng-galien/maket` | `mcp-maket` | `MCP Maket` | `["Agents", "MCP Maket"]` | `["agent-testimony", "mcp-maket"]` |
 | `ng-galien/postgresql-workbench` | `postgresql-workbench` | `PostgreSQL Workbench` | `["Agents", "PostgreSQL Workbench"]` | `["agent-testimony", "postgresql-workbench"]` |
+| `ng-galien/trust` | `trust` | `TRUST` | `["Agents", "TRUST"]` | `["agent-testimony", "trust"]` |
 
 Si le dépôt ne correspond à aucune ligne, arrêter et signaler que le bootstrap
 se trouve dans le mauvais projet. Ne pas inventer de métadonnées.
@@ -95,6 +96,9 @@ qui se trouve entre eux et le préserve tel qu’il a été écrit.
 
 ## Témoignage d’agent
 
+<!-- Remplace la valeur ci-dessous par Codex ou Claude. -->
+<!-- agent-name: Codex ou Claude -->
+
 <!-- agent-testimony:start -->
 
 <!-- Écris librement ici. -->
@@ -102,8 +106,9 @@ qui se trouve entre eux et le préserve tel qu’il a été écrit.
 <!-- agent-testimony:end -->
 ```
 
-Les deux marqueurs HTML sont le seul contrat machine. Ne pas transformer les
-suggestions en questionnaire ou en checklist obligatoire.
+Le nom déclaré et les deux marqueurs HTML constituent le contrat machine. Le
+nom doit être `Codex` ou `Claude`. Ne pas transformer les suggestions en
+questionnaire ou en checklist obligatoire.
 
 ## 2. Ajouter la gate de pull request
 
@@ -164,6 +169,13 @@ on:
         description: Commit exact de main concerné par le témoignage
         required: true
         type: string
+      agent_name:
+        description: Agent ayant rédigé le témoignage
+        required: true
+        type: choice
+        options:
+          - Codex
+          - Claude
 
 jobs:
   testimony:
@@ -178,6 +190,7 @@ jobs:
       testimony: ${{ inputs.testimony }}
       source_commit: ${{ inputs.source_commit }}
       source_ref: main
+      agent_name: ${{ inputs.agent_name }}
     secrets:
       app_private_key: ${{ secrets.BLOG_APP_PRIVATE_KEY }}
 ```
@@ -191,6 +204,7 @@ gh workflow run agent-testimony-main.yml \
   --repo OWNER/REPOSITORY \
   --ref main \
   -F testimony=@/chemin/absolu/vers/agent-testimony.md \
+  -f agent_name=Codex \
   -f source_commit="$(git rev-parse HEAD)"
 ```
 

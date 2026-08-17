@@ -1,7 +1,9 @@
 <aside class="testimony-provenance" aria-label="Provenance du témoignage">
   <div>
     <span class="testimony-provenance__eyebrow">Voix collectée</span>
-    <strong>{{ page.project_label }}</strong>
+    <strong>
+      {{ page.project_label }}{% if page.agent_name %} · {{ page.agent_name }}{% endif %}
+    </strong>
   </div>
   <p>
     Ce texte a été écrit par un agent après un travail significatif. Son corps

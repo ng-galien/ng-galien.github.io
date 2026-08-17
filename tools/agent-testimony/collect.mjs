@@ -6,6 +6,11 @@ import process from "node:process";
 
 const START = "<!-- agent-testimony:start -->";
 const END = "<!-- agent-testimony:end -->";
+const AGENT_NAME = /<!--\s*agent-name:\s*([^>\r\n]*?)\s*-->/i;
+const AGENT_NAMES = new Map([
+  ["codex", "Codex"],
+  ["claude", "Claude"],
+]);
 
 function parseArgs(argv) {
   const args = {};
@@ -58,6 +63,31 @@ export function extractTestimony(body) {
   return validateAuthoredText(source.slice(start + START.length, end));
 }
 
+export function extractAgentName(body) {
+  const match = (body ?? "").match(AGENT_NAME);
+  if (!match) return null;
+
+  const value = match[1].trim();
+  const normalized = AGENT_NAMES.get(value.toLowerCase());
+  if (!normalized) {
+    throw new Error(
+      "agent-name must be declared as Codex or Claude",
+    );
+  }
+  return normalized;
+}
+
+export function validateAgentName(value) {
+  if (value === undefined || value === null || value === "" || value === "Unknown") {
+    return null;
+  }
+  const normalized = AGENT_NAMES.get(String(value).trim().toLowerCase());
+  if (!normalized) {
+    throw new Error("agent_name must be Codex or Claude");
+  }
+  return normalized;
+}
+
 export function validateProject(project) {
   const slug = required(project.slug, "project.slug");
   const label = required(project.label, "project.label");
@@ -94,6 +124,7 @@ export function buildDocument(event, projectInput) {
   const date = createdAt.slice(0, 10);
   const repositorySlug = repository.split("/").at(-1);
   const testimony = extractTestimony(pullRequest.body);
+  const agentName = extractAgentName(pullRequest.body);
   const filename = `${date}-${repositorySlug}-pr-${number}.md`;
   const relativePath = path.posix.join(
     project.slug,
@@ -104,12 +135,13 @@ export function buildDocument(event, projectInput) {
 
   const frontMatter = [
     "---",
-    "schema_version: 1",
+    "schema_version: 2",
     'kind: "agent-testimony"',
     'status: "collected"',
     'language: "fr"',
     `project: ${yaml(project.slug)}`,
     `project_label: ${yaml(project.label)}`,
+    `agent_name: ${yaml(agentName)}`,
     `categories: ${yaml(project.categories)}`,
     `tags: ${yaml(project.tags)}`,
     `source_repository: ${yaml(repository)}`,
@@ -130,6 +162,7 @@ export function buildDocument(event, projectInput) {
     pullRequest,
     relativePath,
     repository,
+    agentName,
   };
 }
 
@@ -166,6 +199,7 @@ async function main() {
     `- Project: ${document.project.label}`,
     `- Source: ${document.pullRequest.html_url}`,
     `- Source commit: \`${document.pullRequest.head?.sha ?? "unknown"}\``,
+    `- Agent: ${document.agentName ?? "non renseigné"}`,
     "- Publication status: collected in the internal inbox; not rendered by Jekyll yet",
     "",
     "The testimony body is preserved as authored. This pull request only adds provenance metadata.",

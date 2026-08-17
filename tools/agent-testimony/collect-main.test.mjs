@@ -16,6 +16,7 @@ const source = {
   runId: "12345",
   runUrl: "https://github.com/ng-galien/maket/actions/runs/12345",
   actor: "ng-galien",
+  agentName: "Claude",
   submittedAt: "2026-08-14T13:15:00Z",
 };
 
@@ -31,6 +32,8 @@ test("buildMainDocument preserves a free testimony from main", () => {
   assert.match(result.content, /source_kind: "main"/);
   assert.match(result.content, /language: "fr"/);
   assert.match(result.content, /source_commit: "abcdef1234567890"/);
+  assert.match(result.content, /schema_version: 2/);
+  assert.match(result.content, /agent_name: "Claude"/);
   assert.ok(result.content.endsWith(`${testimony}\n`));
 });
 
@@ -41,6 +44,25 @@ test("buildMainDocument accepts a very short testimony", () => {
     source,
   );
   assert.ok(result.content.endsWith("Nothing surprising this time.\n"));
+});
+
+test("buildMainDocument keeps legacy submissions without an agent name", () => {
+  const result = buildMainDocument("A legacy testimony.", project, {
+    ...source,
+    agentName: null,
+  });
+  assert.match(result.content, /agent_name: null/);
+});
+
+test("buildMainDocument rejects an unsupported agent name", () => {
+  assert.throws(
+    () =>
+      buildMainDocument("A testimony.", project, {
+        ...source,
+        agentName: "Someone else",
+      }),
+    /Codex or Claude/,
+  );
 });
 
 test("buildMainDocument rejects an invalid commit", () => {

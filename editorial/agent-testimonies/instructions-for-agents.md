@@ -43,6 +43,9 @@ d’origine lorsque cela est plus clair.
 ```markdown
 ## Témoignage d’agent
 
+<!-- Remplace la valeur ci-dessous par Codex ou Claude. -->
+<!-- agent-name: Codex ou Claude -->
+
 <!-- agent-testimony:start -->
 
 Écris librement ici.
@@ -50,7 +53,8 @@ d’origine lorsque cela est plus clair.
 <!-- agent-testimony:end -->
 ```
 
-Conserve les marqueurs inchangés. Ne déclare pas la pull request produit prête
+Déclare ton nom comme `Codex` ou `Claude`, puis conserve les marqueurs
+inchangés. Ne déclare pas la pull request produit prête
 tant qu’aucun texte rédigé ne se trouve entre eux.
 
 ---

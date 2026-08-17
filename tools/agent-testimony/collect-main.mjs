@@ -6,6 +6,7 @@ import process from "node:process";
 
 import {
   validateAuthoredText,
+  validateAgentName,
   validateProject,
 } from "./collect.mjs";
 
@@ -57,6 +58,7 @@ export function buildMainDocument(testimonyInput, projectInput, sourceInput) {
   const testimony = validateAuthoredText(testimonyInput);
   const project = validateProject(projectInput);
   const source = validateSource(sourceInput);
+  const agentName = validateAgentName(source.agentName);
   const date = source.submittedAt.slice(0, 10);
   const year = date.slice(0, 4);
   const repositorySlug = source.repository.split("/").at(-1);
@@ -68,13 +70,14 @@ export function buildMainDocument(testimonyInput, projectInput, sourceInput) {
 
   const frontMatter = [
     "---",
-    "schema_version: 1",
+    "schema_version: 2",
     'kind: "agent-testimony"',
     'status: "collected"',
     'source_kind: "main"',
     'language: "fr"',
     `project: ${yaml(project.slug)}`,
     `project_label: ${yaml(project.label)}`,
+    `agent_name: ${yaml(agentName)}`,
     `categories: ${yaml(project.categories)}`,
     `tags: ${yaml(project.tags)}`,
     `source_repository: ${yaml(source.repository)}`,
@@ -92,6 +95,7 @@ export function buildMainDocument(testimonyInput, projectInput, sourceInput) {
   return {
     content: `${frontMatter}${testimony}\n`,
     project,
+    agentName,
     relativePath,
     source,
     sourceUrl,
@@ -125,6 +129,7 @@ async function main() {
     runId: required(args["source-run-id"], "--source-run-id"),
     runUrl: args["source-run-url"] ?? null,
     actor: args["submission-actor"] ?? null,
+    agentName: args["agent-name"] ?? null,
     submittedAt: required(args["submitted-at"], "--submitted-at"),
   };
   const outputRoot = required(args["output-root"], "--output-root");
@@ -146,6 +151,7 @@ async function main() {
     `- Project: ${document.project.label}`,
     `- Source: ${document.sourceUrl}`,
     `- GitHub Actions run: ${document.source.runUrl ?? "not provided"}`,
+    `- Agent: ${document.agentName ?? "non renseigné"}`,
     "- Publication status: collected in the internal inbox; not rendered by Jekyll yet",
     "",
     "The testimony body is preserved as authored. This pull request only adds provenance metadata.",

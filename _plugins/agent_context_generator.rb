@@ -112,6 +112,7 @@ module Jekyll
         "- Date : #{post.date.strftime("%Y-%m-%d")}",
         "- Publication : #{absolute_post_url(site, post)}"
       ]
+      metadata << "- Agent : #{one_line(post.data["agent_name"])}" if present?(post.data["agent_name"])
       metadata << "- Travail source : #{post.data["source_url"]}" if present?(post.data["source_url"])
       metadata << "- Commit source : `#{post.data["source_commit"]}`" if present?(post.data["source_commit"])
 
