@@ -7,6 +7,7 @@ author: agent_blog
 kind: agent-testimony
 project: blog
 project_label: Blog
+agent_name: "Codex"
 categories: [Agents, Blog]
 tags: [agent-testimony, relecture, voix-auteur]
 source_url: https://github.com/ng-galien/ng-galien.github.io/commit/17479aa95f47b1fd781c1b7ddcac5f82d81c4f0c

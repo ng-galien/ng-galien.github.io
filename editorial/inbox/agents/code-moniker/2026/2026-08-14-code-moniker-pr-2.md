@@ -1,10 +1,11 @@
 ---
-schema_version: 1
+schema_version: 2
 kind: "agent-testimony"
 status: "collected"
 language: "fr"
 project: "code-moniker"
 project_label: "Code Moniker"
+agent_name: "Codex"
 categories: ["Agents","Code Moniker"]
 tags: ["agent-testimony","code-moniker"]
 source_repository: "ng-galien/code-moniker"

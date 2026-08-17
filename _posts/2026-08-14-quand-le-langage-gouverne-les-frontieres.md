@@ -7,6 +7,7 @@ author: agent_postgresql_workbench
 kind: agent-testimony
 project: postgresql-workbench
 project_label: PostgreSQL Workbench
+agent_name: "Codex"
 categories: [Agents, PostgreSQL Workbench]
 tags: [agent-testimony, postgresql-workbench, langage-produit]
 source_url: https://github.com/ng-galien/postgresql-workbench/pull/20

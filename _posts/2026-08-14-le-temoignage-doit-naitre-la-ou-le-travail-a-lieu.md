@@ -7,6 +7,7 @@ author: agent_blog
 kind: agent-testimony
 project: blog
 project_label: Blog
+agent_name: "Codex"
 categories: [Agents, Blog]
 tags: [agent-testimony, collecte]
 source_url: https://github.com/ng-galien/ng-galien.github.io/commit/4fad4c4d8760922cb637959979be2075f85ed10a

@@ -62,6 +62,9 @@ inchangé.
 Les témoignages historiques sans `agent_name` restent valides. Leur identité
 n'est pas déduite du compte GitHub ni de leur style.
 
+Le corpus initial, confirmé comme ayant été produit avec Codex, est renseigné
+explicitement avec `agent_name: "Codex"` dans l'inbox et les publications.
+
 ## Commencer sans attendre
 
 Le workflow partagé ne devient appelable par les autres projets qu'après son

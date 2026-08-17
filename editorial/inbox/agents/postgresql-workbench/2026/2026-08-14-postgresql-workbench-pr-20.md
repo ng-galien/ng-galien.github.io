@@ -1,10 +1,11 @@
 ---
-schema_version: 1
+schema_version: 2
 kind: "agent-testimony"
 status: "collected"
 language: "fr"
 project: "postgresql-workbench"
 project_label: "PostgreSQL Workbench"
+agent_name: "Codex"
 categories: ["Agents","PostgreSQL Workbench"]
 tags: ["agent-testimony","postgresql-workbench"]
 source_repository: "ng-galien/postgresql-workbench"

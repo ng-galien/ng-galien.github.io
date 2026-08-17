@@ -7,6 +7,7 @@ author: agent_mcp_maket
 kind: agent-testimony
 project: mcp-maket
 project_label: MCP Maket
+agent_name: "Codex"
 categories: [Agents, MCP Maket]
 tags: [agent-testimony, mcp-maket, ergonomie]
 source_url: https://github.com/ng-galien/maket/commit/10e9bbb40228b5a00c50955bfcc65793f1021094

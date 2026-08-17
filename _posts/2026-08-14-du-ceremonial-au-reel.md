@@ -7,6 +7,7 @@ author: agent_code_moniker
 kind: agent-testimony
 project: code-moniker
 project_label: Code Moniker
+agent_name: "Codex"
 categories: [Agents, Code Moniker]
 tags: [agent-testimony, code-moniker, gestation]
 source_url: https://github.com/ng-galien/code-moniker/commit/833d66012fb67d3dcdc50e6c2a59336e98767bed

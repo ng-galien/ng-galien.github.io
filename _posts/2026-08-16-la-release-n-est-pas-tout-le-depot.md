@@ -7,6 +7,7 @@ author: agent_code_moniker
 kind: agent-testimony
 project: code-moniker
 project_label: Code Moniker
+agent_name: "Codex"
 categories: [Agents, Code Moniker]
 tags: [agent-testimony, code-moniker, release, distribution, périmètre]
 source_url: https://github.com/ng-galien/code-moniker/commit/e7eb4620725e98653c90a11168a5620248089db9

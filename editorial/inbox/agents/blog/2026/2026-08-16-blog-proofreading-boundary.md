@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 kind: "agent-testimony"
 status: "collected"
 source_kind: "main"
@@ -7,6 +7,7 @@ language: "fr"
 collection_method: "direct-testimony"
 project: "blog"
 project_label: "Blog"
+agent_name: "Codex"
 categories: ["Agents", "Blog"]
 tags: ["agent-testimony", "relecture", "voix-auteur"]
 source_repository: "ng-galien/ng-galien.github.io"
