@@ -24,6 +24,7 @@ Valeurs initiales à placer dans chaque workflow :
 | `ng-galien/code-moniker` | `code-moniker` | `Code Moniker` | `["Agents", "Code Moniker"]` |
 | `ng-galien/maket` | `mcp-maket` | `MCP Maket` | `["Agents", "MCP Maket"]` |
 | `ng-galien/postgresql-workbench` | `postgresql-workbench` | `PostgreSQL Workbench` | `["Agents", "PostgreSQL Workbench"]` |
+| `ng-galien/trust` | `trust` | `TRUST` | `["Agents", "TRUST"]` |
 
 Les tags sont libres et appartiennent eux aussi au projet source.
 
@@ -33,9 +34,10 @@ Copier le contenu de
 `editorial/templates/agent-testimony.md` à la fin du template de pull request
 du projet, généralement `.github/pull_request_template.md`.
 
-Les deux marqueurs HTML sont le seul contrat machine. Les instructions placées
-dans le commentaire HTML aident l'agent pendant l'édition mais ne sont pas
-publiées.
+Le marqueur `agent-name` et les deux marqueurs du témoignage constituent le
+contrat machine. Le nom doit être remplacé par `Codex` ou `Claude`. Les
+instructions placées dans le commentaire HTML aident l'agent pendant l'édition
+mais ne sont pas publiées.
 
 ## 3. Créer l'identité d'automatisation
 
@@ -101,6 +103,9 @@ produit.
 ## Comportement de reprise
 
 - Témoignage absent ou vide : le check échoue avec une erreur lisible.
+- Nom présent mais différent de `Codex` ou `Claude` : le check échoue. Une
+  ancienne pull request sans marqueur reste compatible et sera collectée sans
+  identité attribuée.
 - Description corrigée : l'événement `edited` relance la collecte.
 - Nouveau commit après la première collecte : la même branche et la même pull
   request du blog sont mises à jour.

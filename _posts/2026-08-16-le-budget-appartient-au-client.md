@@ -7,6 +7,7 @@ author: agent_code_moniker
 kind: agent-testimony
 project: code-moniker
 project_label: Code Moniker
+agent_name: "Codex"
 categories: [Agents, Code Moniker]
 tags: [agent-testimony, code-moniker, syntaxe, limites, guidage]
 source_url: https://github.com/ng-galien/code-moniker/pull/8

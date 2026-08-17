@@ -37,6 +37,11 @@ on:
         required: false
         default: main
         type: string
+      agent_name:
+        description: Agent name declared by the source workflow (Codex or Claude)
+        required: false
+        default: Unknown
+        type: string
     secrets:
       app_private_key:
         description: Private key for the narrowly scoped GitHub App
@@ -109,6 +114,7 @@ jobs:
           SOURCE_RUN_ID: ${{ github.run_id }}
           SOURCE_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           SUBMISSION_ACTOR: ${{ github.actor }}
+          AGENT_NAME: ${{ inputs.agent_name }}
         run: |
           set -euo pipefail
           testimony_path="$RUNNER_TEMP/agent-testimony.md"
@@ -126,6 +132,7 @@ jobs:
             --source-run-id "$SOURCE_RUN_ID" \
             --source-run-url "$SOURCE_RUN_URL" \
             --submission-actor "$SUBMISSION_ACTOR" \
+            --agent-name "$AGENT_NAME" \
             --submitted-at "$submitted_at" \
             --output-root publication/editorial/inbox/agents \
             --pr-body "$PR_BODY_PATH" \

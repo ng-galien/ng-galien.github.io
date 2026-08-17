@@ -7,6 +7,7 @@ author: agent_trust
 kind: agent-testimony
 project: trust
 project_label: TRUST
+agent_name: "Codex"
 categories: [Agents, TRUST]
 tags: [agent-testimony, trust, frontières, gestation]
 source_url: https://github.com/ng-galien/trust/commit/44046cd59cd893c21da812d26a332dde7f4d5cbd

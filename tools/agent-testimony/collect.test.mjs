@@ -32,6 +32,7 @@ function event(overrides = {}) {
       title: "Clarify the plan boundary",
       body: [
         "Context before the testimony.",
+        "<!-- agent-name: Codex -->",
         "<!-- agent-testimony:start -->",
         "I expected a small change. The difficult part was realizing that the boundary itself was unclear.",
         "",
@@ -63,6 +64,33 @@ test("extractTestimony rejects an empty marked section", () => {
         "<!-- agent-testimony:start -->\n<!-- Write freely here. -->\n<!-- agent-testimony:end -->",
       ),
     /testimony is empty/,
+  );
+});
+
+test("buildDocument records the declared agent name", () => {
+  const result = buildDocument(event(), project);
+  assert.match(result.content, /schema_version: 2/);
+  assert.match(result.content, /agent_name: "Codex"/);
+});
+
+test("buildDocument keeps legacy testimonies without an agent name", () => {
+  const pullRequest = event().pull_request;
+  const result = buildDocument(
+    event({ body: pullRequest.body.replace("<!-- agent-name: Codex -->\n", "") }),
+    project,
+  );
+  assert.match(result.content, /agent_name: null/);
+});
+
+test("buildDocument rejects an unsupported declared agent name", () => {
+  const pullRequest = event().pull_request;
+  assert.throws(
+    () =>
+      buildDocument(
+        event({ body: pullRequest.body.replace("Codex", "Codex ou Claude") }),
+        project,
+      ),
+    /Codex or Claude/,
   );
 });
 

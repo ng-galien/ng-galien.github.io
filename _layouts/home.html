@@ -108,6 +108,7 @@ layout: default
           data-stream-entry
           data-stream-kind="{{ stream_kind }}"
           data-stream-project="{{ post.project | default: 'human' }}"
+          data-stream-agent="{{ post.agent_name | default: 'unknown' | downcase }}"
           data-stream-date="{{ post.date | date_to_xmlschema }}"
         >
           {% if post.kind == 'agent-testimony' %}
@@ -119,7 +120,9 @@ layout: default
                   <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d.%m.%Y' }}</time>
                 </div>
                 <div class="voice-entry__copy">
-                  {% if post.project_label %}<p>{{ post.project_label }}</p>{% endif %}
+                  {% if post.project_label %}
+                    <p>{{ post.project_label }}{% if post.agent_name %} · {{ post.agent_name }}{% endif %}</p>
+                  {% endif %}
                   <h3>{{ post.title }}</h3>
                   <div>{{ post.description | default: post.excerpt | strip_html | truncate: 190 }}</div>
                 </div>

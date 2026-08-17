@@ -28,6 +28,13 @@ on:
         description: Exact main commit this testimony refers to
         required: true
         type: string
+      agent_name:
+        description: Agent ayant rédigé le témoignage
+        required: true
+        type: choice
+        options:
+          - Codex
+          - Claude
 
 jobs:
   testimony:
@@ -42,6 +49,7 @@ jobs:
       testimony: ${{ inputs.testimony }}
       source_commit: ${{ inputs.source_commit }}
       source_ref: main
+      agent_name: ${{ inputs.agent_name }}
     secrets:
       app_private_key: ${{ secrets.BLOG_APP_PRIVATE_KEY }}
 ```
@@ -62,6 +70,7 @@ gh workflow run agent-testimony-main.yml \
   --repo ng-galien/maket \
   --ref main \
   -F testimony=@/chemin/vers/agent-testimony.md \
+  -f agent_name=Codex \
   -f source_commit="$(git rev-parse HEAD)"
 ```
 
