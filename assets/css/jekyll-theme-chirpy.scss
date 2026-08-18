@@ -130,17 +130,17 @@ body {
 }
 
 .signal-home {
-  padding-bottom: 6rem;
+  padding-bottom: 3rem;
 }
 
 .signal-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.14fr) minmax(17rem, 0.86fr);
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.38fr);
   align-items: center;
-  gap: 2rem;
-  min-height: min(72vh, 44rem);
-  padding: 4.25rem 0 5rem;
+  gap: 1.5rem;
+  min-height: 18rem;
+  padding: 2.8rem 0 2.5rem;
   overflow: hidden;
 }
 
@@ -157,7 +157,7 @@ body {
 .signal-kicker,
 .section-heading > p,
 .testimony-provenance__eyebrow {
-  margin: 0 0 1.4rem;
+  margin: 0 0 0.8rem;
   color: var(--agent-lime);
   font-size: 0.72rem;
   font-weight: 700;
@@ -177,11 +177,11 @@ body {
 }
 
 .signal-hero h1 {
-  max-width: 9ch;
+  max-width: 15ch;
   margin: 0;
   color: var(--agent-paper);
   font-family: Lato, sans-serif;
-  font-size: clamp(4.3rem, 8.5vw, 8.4rem);
+  font-size: clamp(3.2rem, 6vw, 5.7rem);
   font-weight: 900;
   line-height: 0.82;
   letter-spacing: -0.075em;
@@ -194,10 +194,10 @@ body {
 }
 
 .signal-lead {
-  max-width: 36rem;
-  margin: 2.1rem 0 1.7rem;
+  max-width: 31rem;
+  margin: 1.2rem 0 0;
   color: #c3cec0;
-  font-size: clamp(1.08rem, 1.6vw, 1.32rem);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
   line-height: 1.55;
 }
 
@@ -222,7 +222,7 @@ body {
 .signal-orbit {
   position: relative;
   aspect-ratio: 1;
-  max-width: 27rem;
+  max-width: 13.5rem;
   width: 100%;
   margin-left: auto;
 }
@@ -306,23 +306,22 @@ body {
 .signal-orbit__label--two { right: 0; top: 36%; }
 .signal-orbit__label--three { left: 38%; bottom: 0; }
 
-.project-signals,
 .voice-stream {
-  padding: 6rem 0;
+  padding: 3.2rem 0;
 }
 
 .section-heading {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 2rem;
-  margin-bottom: 3.4rem;
+  gap: 1.5rem;
+  margin-bottom: 1.7rem;
 }
 
 .section-heading h2 {
-  max-width: 17ch;
+  max-width: 20ch;
   margin: 0;
   font-family: Lato, sans-serif;
-  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-size: clamp(2rem, 4vw, 3.8rem);
   font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.055em;
@@ -396,8 +395,8 @@ body {
   position: absolute;
   top: 0;
   right: -12vw;
-  width: 27rem;
-  height: 27rem;
+  width: 19rem;
+  height: 19rem;
   border-radius: 50%;
   background: radial-gradient(circle, rgb(242 166 90 / 8%), transparent 68%);
   pointer-events: none;
@@ -406,7 +405,7 @@ body {
 .voice-console {
   position: relative;
   z-index: 2;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
   border-top: 1px solid var(--agent-lime);
   border-bottom: 1px solid var(--agent-line);
   background: rgb(17 22 18 / 72%);
@@ -417,8 +416,8 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-height: 3.1rem;
-  padding: 0 1rem;
+  min-height: 2.6rem;
+  padding: 0 0.85rem;
   color: var(--agent-muted);
   font-size: 0.74rem;
   letter-spacing: 0.09em;
@@ -428,6 +427,7 @@ body {
 
 .voice-console__heading strong {
   color: var(--agent-paper);
+  font-size: 0.7rem;
 }
 
 .voice-console__signal {
@@ -440,6 +440,8 @@ body {
 
 .voice-console__status {
   margin-left: auto;
+  color: #697464;
+  font-size: 0.66rem;
 }
 
 .voice-console__status::before {
@@ -827,23 +829,22 @@ article[data-toc='false'] > header h1 {
 @media (max-width: 767px) {
   .signal-hero {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0;
     min-height: auto;
-    padding: 3.5rem 0 4rem;
+    padding: 2.25rem 0 1.7rem;
   }
 
   .signal-hero h1 {
-    font-size: clamp(3.75rem, 20vw, 6.5rem);
+    font-size: clamp(3rem, 16vw, 4.35rem);
+    line-height: 0.9;
   }
 
   .signal-orbit {
-    width: min(100%, 22rem);
-    margin: 1.5rem auto 0;
+    display: none;
   }
 
-  .project-signals,
   .voice-stream {
-    padding: 4.5rem 0;
+    padding: 2.75rem 0;
   }
 
   .section-heading {
