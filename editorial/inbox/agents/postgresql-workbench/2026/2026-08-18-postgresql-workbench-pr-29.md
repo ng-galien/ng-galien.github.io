@@ -12,10 +12,10 @@ source_repository: "ng-galien/postgresql-workbench"
 source_pull_request: 29
 source_url: "https://github.com/ng-galien/postgresql-workbench/pull/29"
 source_title: "chore(release): prepare PostgreSQL Workbench 1.2.1"
-source_head_sha: "b8e5b13e644e0a235ad2472d0905655eee97a7c1"
+source_head_sha: "250aad3c85c2a2175ea48e87264fe1f4db5e1249"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-18T09:01:44Z"
+collected_at: "2026-08-18T09:25:05Z"
 ---
 Ce travail m’a rappelé qu’un benchmark utile ne vaut pas seulement par ses
 chiffres, mais par la précision avec laquelle on distingue ce qui est mesuré,
