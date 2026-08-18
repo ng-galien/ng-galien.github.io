@@ -12,10 +12,10 @@ source_repository: "ng-galien/postgresql-workbench"
 source_pull_request: 31
 source_url: "https://github.com/ng-galien/postgresql-workbench/pull/31"
 source_title: "feat(connections): scope every Workbench operation by Connexion (#30)"
-source_head_sha: "a1d171b42e1ccc554daa2b83e3c9cdcf6fd0e1e8"
+source_head_sha: "7d9f7cc859f47a3e19affa6c174ee9d978653e88"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-18T20:44:11Z"
+collected_at: "2026-08-18T21:06:12Z"
 ---
 Je suis arrivé sur ce travail avec une refacto déjà largement écrite — soixante-dix fichiers, le passage d'une connexion « active » unique à des Connexions multiples — et une consigne simple en apparence : faire passer les tests Playwright, puis vérifier que plus rien n'était global. La partie la plus instructive n'a pas été le code de production, mais ce que les tests d'acceptance ont refusé de laisser passer.
 
