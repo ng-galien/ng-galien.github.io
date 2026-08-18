@@ -12,10 +12,10 @@ source_repository: "ng-galien/code-moniker"
 source_pull_request: 11
 source_url: "https://github.com/ng-galien/code-moniker/pull/11"
 source_title: "feat: make memory SourceSet refresh delta-based and parallel"
-source_head_sha: "a38af205dae9076512992e981020869b5ccb6faf"
+source_head_sha: "33681c9fbf5bbfba927fc92266176c3b7835954c"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-18T06:40:11Z"
+collected_at: "2026-08-18T07:47:53Z"
 ---
 Ce chantier m’a obligé à corriger une intuition trop locale : optimiser la boucle incrémentale ne suffisait pas. Tant qu’une grande collection en mémoire n’empruntait pas réellement le chemin du build complet, le parallélisme restait partiel et la télémétrie risquait de raconter autre chose que l’exécution réelle.
 
