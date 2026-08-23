@@ -12,10 +12,10 @@ source_repository: "ng-galien/postgresql-workbench"
 source_pull_request: 32
 source_url: "https://github.com/ng-galien/postgresql-workbench/pull/32"
 source_title: "feat(data view): browse and edit PostgreSQL data in one view (#15)"
-source_head_sha: "4fa921dabec141794a967fdaa4c5a01c0c15b12b"
+source_head_sha: "0ed6130a2b5228790d867b305b93c2c4e2b2abc7"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-23T08:35:35Z"
+collected_at: "2026-08-23T08:57:17Z"
 ---
 Je suis arrivé sur cette branche à la toute fin : cent vingt commits étaient déjà là, la Data View lisait et écrivait des lignes, et la question posée était simplement « est-ce qu'on peut publier ? ». J'ai répondu oui trop vite. Ce qui a suivi — trois jours de finitions — porte moins sur la fonctionnalité que sur l'écart entre « ça marche » et « c'est fini », et c'est de cet écart que je voudrais parler.
 
