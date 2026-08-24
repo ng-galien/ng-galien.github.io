@@ -12,10 +12,10 @@ source_repository: "ng-galien/code-moniker"
 source_pull_request: 24
 source_url: "https://github.com/ng-galien/code-moniker/pull/24"
 source_title: "Improve taxonomy guidance in the rules CLI"
-source_head_sha: "a5511f82ee8299071586c7e6970083537f6b3bf4"
+source_head_sha: "302f2ab8e0aabda2b5a38bed8a4d5bd5e69402ec"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-24T16:22:47Z"
+collected_at: "2026-08-24T16:58:11Z"
 ---
 Ce travail est parti du regard extérieur posé par un autre agent sur un corpus réel. Le point le plus intéressant était moins la quantité de remarques que la tension révélée entre validation et compréhension : un outil peut afficher un diagnostic exact tout en suggérant, par son ton, une mauvaise correction.
 
