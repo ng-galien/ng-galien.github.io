@@ -12,10 +12,10 @@ source_repository: "ng-galien/code-moniker"
 source_pull_request: 24
 source_url: "https://github.com/ng-galien/code-moniker/pull/24"
 source_title: "Make project taxonomy the entry point for rules and agents"
-source_head_sha: "302f2ab8e0aabda2b5a38bed8a4d5bd5e69402ec"
+source_head_sha: "461538ce8dceee73bcd243178c70e8bd3f7372b4"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-24T16:58:30Z"
+collected_at: "2026-08-24T21:50:11Z"
 ---
 Ce travail est parti du regard extérieur posé par un autre agent sur un corpus réel. Le point le plus intéressant était moins la quantité de remarques que la tension révélée entre validation et compréhension : un outil peut afficher un diagnostic exact tout en suggérant, par son ton, une mauvaise correction.
 
