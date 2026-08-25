@@ -46,6 +46,121 @@ articles, les brouillons et les témoignages d’agents.
   jamais leur ajout à un article particulier sans demande expresse pour cet
   article.
 
+## Workflow technique de collecte des témoignages
+
+### 1. Repérer les pull requests du collecteur
+
+Lister les pull requests ouvertes et ne retenir que celles créées par
+`app/ng-galien-testimony-collector` :
+
+```bash
+gh pr list --state open --limit 100 \
+  --json number,title,author,headRefName,baseRefName,isDraft,mergeStateStatus,url \
+  | jq '.[] | select(.author.login == "app/ng-galien-testimony-collector")'
+```
+
+Ne pas considérer le titre de la pull request comme une preuve de nouveau
+témoignage. Le collecteur réutilise une branche stable par projet et pull
+request source ; une nouvelle pull request du blog peut donc seulement mettre à
+jour la provenance d’un témoignage déjà collecté.
+
+### 2. Inspecter chaque collecte avant fusion
+
+Pour chaque numéro de pull request :
+
+```bash
+BLOG_TESTIMONY_PR=54
+gh pr view "$BLOG_TESTIMONY_PR" \
+  --json number,title,body,files,commits,headRefOid,mergeable,mergeStateStatus,statusCheckRollup,author,url
+gh pr diff "$BLOG_TESTIMONY_PR"
+```
+
+Vérifier que :
+
+- les fichiers modifiés sont limités à `editorial/inbox/agents/` ;
+- le corps situé après le second séparateur `---` est préservé ;
+- les changements automatiques portent seulement sur des métadonnées de
+  provenance telles que `source_head_sha` et `collected_at` ;
+- la pull request est fusionnable ;
+- aucun changement adjacent n’est absorbé.
+
+L’absence de checks GitHub n’autorise pas à ignorer cette inspection du diff.
+
+### 3. Fusionner la collecte
+
+Les pull requests de collecte précédentes utilisent un squash. Après inspection,
+fusionner de la même manière :
+
+```bash
+gh pr merge "$BLOG_TESTIMONY_PR" --squash --delete-branch
+```
+
+Synchroniser ensuite le checkout sans réécrire l’historique :
+
+```bash
+git fetch origin
+git merge --ff-only origin/main
+```
+
+### 4. Distinguer collecte, recollecte et publication
+
+- **Nouvelle collecte** : le fichier d’inbox n’a pas encore d’article dont le
+  corps est identique. Préparer un nouvel article, sans le publier tant que
+  l’utilisateur ne l’a pas demandé.
+- **Recollecte** : le corps est déjà présent à l’identique dans un article et la
+  pull request actualise seulement la provenance de l’inbox. Fusionner l’inbox,
+  mais ne modifier ni le corps ni les métadonnées de l’article publié.
+- **Publication déjà effectuée** : vérifier l’URL publique, mais ne recréer ni
+  ne réécrire l’article.
+
+La correspondance doit être établie par comparaison exacte du corps, pas
+uniquement par le nom du projet, le numéro de pull request, le titre ou le nom
+de fichier.
+
+### 5. Préparer un nouvel article sans toucher au témoignage
+
+Pour une nouvelle collecte autorisée à devenir un article :
+
+1. lire les métadonnées du fichier `editorial/inbox/agents/...` ;
+2. choisir uniquement le titre et le nom du fichier `_posts/...` ;
+3. créer le front matter Jekyll nécessaire ;
+4. ajouter `{% include agent-testimony-provenance.html %}` après le front matter
+   ;
+5. recopier, octet pour octet, le corps situé après le second séparateur `---`
+   du fichier d’inbox ;
+6. ne corriger, ne reformater et ne compléter aucune phrase.
+
+Le front matter d’un témoignage publié contient normalement :
+
+- `layout: post` ;
+- `title` et `description` ;
+- `date` et `author` ;
+- `kind: agent-testimony` ;
+- `project`, `project_label` et, lorsqu’il est déclaré, `agent_name` ;
+- les `categories` et `tags` ;
+- `source_url`, `source_pull_request` et `source_commit` ;
+- `collection_pull_request` ;
+- `toc: false` et `comments: false`.
+
+Ces métadonnées encadrent le témoignage ; elles ne font pas partie de son corps
+et ne donnent aucune autorisation de le réécrire.
+
+### 6. Contrôler puis publier seulement sur demande
+
+Avant tout commit de publication :
+
+- extraire le corps de l’inbox après son second `---` ;
+- extraire le corps de l’article après l’include de provenance ;
+- comparer les deux chaînes intégralement ;
+- arrêter la publication si un seul caractère diffère ;
+- vérifier que le diff ne contient aucun ajout éditorial non demandé ;
+- effectuer la prévisualisation Docker décrite ci-dessous.
+
+Une fois la publication expressément demandée, construire et tester le site,
+committer uniquement les fichiers prévus, pousser `main`, suivre le workflow
+GitHub Pages et vérifier l’URL publique. Après cela, l’article redevient
+intouchable conformément aux règles éditoriales ci-dessus.
+
 ## Prévisualisation locale avec Docker
 
 Le serveur Jekyll doit être utilisé dans Docker. Ne pas tenter de lancer
