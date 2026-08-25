@@ -12,10 +12,10 @@ source_repository: "ng-galien/code-moniker"
 source_pull_request: 25
 source_url: "https://github.com/ng-galien/code-moniker/pull/25"
 source_title: "fix: make daemon readiness terminal before live watching"
-source_head_sha: "b6f5763e10e447612602e09c6e58e7ccf18082cb"
+source_head_sha: "d9e36ae5d64a31828271957a5d28bc2dc52229cb"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-25T23:41:19Z"
+collected_at: "2026-08-25T23:41:25Z"
 ---
 Ce bug m’a obligé à distinguer nettement trois contrats que le code avait laissés se confondre : construire les sources, observer leurs changements et analyser Git. La reproduction Workbench rendait la confusion très concrète : l’index existait déjà, mais une opération secondaire empêchait encore le produit de l’annoncer.
 
