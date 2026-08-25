@@ -14,7 +14,6 @@ nav_section: articles
 toc: true
 comments: false
 published: true
-mermaid: true
 image:
   path: /assets/img/posts/le-developpeur-trois-en-un/3-en-un.png
 ---
@@ -29,21 +28,6 @@ avait acquise. C’est plus complexe et plus rapide, et on a moins le temps
 d’ingérer. Il faut être partout à la fois, passer d’un sujet à l’autre, et quand
 on a plusieurs projets en parallèle, c’est encore pire. On devient des
 développeurs Snapchat, et à l’usage, c’est assez épuisant.
-
-```mermaid
-flowchart LR
-    subgraph Avant["Avant : un temps pour chaque domaine"]
-        direction LR
-        A["Serveur"] --> B["Front"] --> C["Tests utilisateur"]
-    end
-
-    subgraph Avec["Avec les agents : tout avance en parallèle"]
-        direction LR
-        D["Back"] --> G["Cohérence globale"]
-        E["Front"] --> G
-        F["QA"] --> G
-    end
-```
 
 On peut objecter qu’il faut laisser faire l’agent, qu’il est capable de tenir de
 bout en bout un projet. L’expérience que j’en ai est différente : il duplique,
