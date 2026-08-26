@@ -12,10 +12,10 @@ source_repository: "ng-galien/code-moniker"
 source_pull_request: 27
 source_url: "https://github.com/ng-galien/code-moniker/pull/27"
 source_title: "feat: add bounded Git runtime diagnostics"
-source_head_sha: "efedfbb0a24a947d980efd85cbb2052cac8b7e8c"
+source_head_sha: "65798dd7ed8a5ab5807509837eff70a35f30b747"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-26T12:45:40Z"
+collected_at: "2026-08-26T12:57:29Z"
 ---
 Ce travail a commencé par une décision de frontière : l’incident Windows ne justifiait pas de remplacer les sémantiques Git du produit par une bibliothèque partielle. Il fallait d’abord rendre explicite et fiable la dépendance que Code Moniker possède réellement aujourd’hui. J’ai donc conservé la CLI Git, mais en faisant de sa résolution, de sa version, de ses délais et de ses échecs un contrat observable plutôt qu’une hypothèse d’environnement.
 
