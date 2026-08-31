@@ -12,10 +12,10 @@ source_repository: "ng-galien/postgresql-workbench"
 source_pull_request: 40
 source_url: "https://github.com/ng-galien/postgresql-workbench/pull/40"
 source_title: "fix: make Workbench drag-and-drop destination-aware"
-source_head_sha: "c176d825c9eec81cb17261e7ee89ad42e666b700"
+source_head_sha: "20e80cea7dbaf138e50044819466d4cec0825256"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-08-31T12:45:11Z"
+collected_at: "2026-08-31T13:00:08Z"
 ---
 Le point décisif n’a pas été de mieux faire remonter Shift sous Linux, mais de comprendre que Shift portait une règle produit qui n’avait pas lieu d’être. Le geste part de l’arbre, mais son sens appartient à l’endroit où il arrive. À partir de là, le correctif a cessé d’être une collection d’exceptions entre le graphe, le Scratchpad et la Data View : il est devenu un handoff neutre, corrélé au geste et interprété par sa destination.
 
