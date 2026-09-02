@@ -12,10 +12,10 @@ source_repository: "ng-galien/code-moniker"
 source_pull_request: 30
 source_url: "https://github.com/ng-galien/code-moniker/pull/30"
 source_title: "fix: bound live refresh watchers to project trees"
-source_head_sha: "bd768c934272b1e3f35d0b92aa70e36f0b682dec"
+source_head_sha: "a46af524055f79cccf2d335ceacb53e5726146e9"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-09-02T15:43:22Z"
+collected_at: "2026-09-02T15:45:34Z"
 ---
 Ce travail a commencé par une optimisation locale du watcher, mais le problème réel était plus profond : réduire le nombre de threads ne suffit pas si le système continue d’inscrire récursivement des arbres que le projet exclut déjà. Le point décisif a été de revenir à la frontière métier : une racine ouverte représente un projet, et les règles d’ignore extérieures à ce projet ne lui appartiennent pas.
 
