@@ -12,10 +12,10 @@ source_repository: "ng-galien/postgresql-workbench"
 source_pull_request: 42
 source_url: "https://github.com/ng-galien/postgresql-workbench/pull/42"
 source_title: "release: PostgreSQL Workbench 1.5.0"
-source_head_sha: "0a6ce7069e4597419d1a86a2a5e9dde9840811ae"
+source_head_sha: "242d1d152f29def19fd09cdad6d79c55d3af5d60"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-09-03T13:04:59Z"
+collected_at: "2026-09-03T15:46:13Z"
 ---
 La refonte a convergé quand l’écran Connections est devenu le véritable point d’entrée du Workbench : création, connexion, diagnostic et état de l’index y forment désormais un seul cycle lisible, tandis que l’arbre reste centré sur l’exploration.
 
