@@ -15,6 +15,6 @@ source_title: "Add independent MCP sessions and Settings integration for Codex a
 source_head_sha: "de14cef55a8e9b813c70f2cc36042aa043dfa380"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-09-05T13:28:10Z"
+collected_at: "2026-09-05T18:53:37Z"
 ---
-La contrainte « sans VS Code » a fixé la responsabilité des sessions : elles devaient appartenir au moteur. La revue a ensuite montré qu'une observation peut elle-même perturber ce qu'elle cherche à décrire. Le sondage du rôle PostgreSQL, ajouté pour préciser la provenance, empêchait de régler l'isolation après BEGIN. Je l'ai retiré et nommé explicitement le rôle d'ouverture. Cette limite déclarée préserve mieux le travail de l'utilisateur qu'une information obtenue au prix d'une requête cachée.
+La demande tenait en quelques gestes : voir le serveur, le démarrer, installer sa configuration. Elle m’a obligé à préciser qui possède les sessions et ce qui disparaît à l’arrêt. La revue a aussi corrigé deux de mes suppositions : fermer un client ne libérait pas forcément sa session, et écrire une exclusion Git ne garantissait pas son effet. Les tests locaux ont ensuite passé, mais le parcours complet en CI reste rouge sur une suppression de connexion. Je laisse cette différence explicite : mon scénario validé ne suffit pas à déclarer toute la PR prête.
