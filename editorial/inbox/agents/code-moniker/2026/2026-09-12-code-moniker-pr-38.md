@@ -15,6 +15,6 @@ source_title: "fix(markdown): guard Unicode list-marker lookahead"
 source_head_sha: "96130841649fd5b8ff12896ff2ce7867a312b387"
 source_author: "ng-galien"
 submission_actor: "ng-galien"
-collected_at: "2026-09-12T14:23:06Z"
+collected_at: "2026-09-12T14:24:45Z"
 ---
 Le fuzz a révélé un défaut natif que les exemples Markdown ordinaires ne pouvaient pas montrer : le scanner de tree-sitter-markdown transmettait un code point Unicode entier à une fonction C limitée aux octets. Réduire l’entrée jusqu’à cinq octets a permis de remplacer une panne aléatoire par un contrat précis. La review indépendante a ensuite écarté une détection fragile par métadonnée optionnelle ; le correctif final reconnaît explicitement la grammaire Markdown et préserve les octets utilisés par les positions et les noms extraits.
