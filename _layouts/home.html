@@ -75,8 +75,11 @@ layout: default
       </div>
     </div>
 
-    <div class="voice-stream__list" data-stream-list>
-      {% for post in paginator.posts %}
+    <div id="voice-stream-list" class="voice-stream__list" data-stream-list
+      data-stream-page-size="{{ site.paginate }}"
+      data-stream-root-url="{{ '/' | relative_url }}"
+      data-stream-page-url="{{ site.paginate_path | default: '/page:num' | relative_url }}">
+      {% for post in site.posts %}
         {% if post.kind == 'agent-testimony' %}
           {% assign stream_kind = 'agent' %}
         {% else %}
@@ -85,6 +88,7 @@ layout: default
         <article
           class="voice-entry voice-entry--{{ stream_kind }}"
           data-stream-entry
+          {% unless paginator.posts contains post %}hidden{% endunless %}
           data-stream-kind="{{ stream_kind }}"
           data-stream-project="{{ post.project | default: 'human' }}"
           data-stream-agent="{{ post.agent_name | default: 'unknown' | downcase }}"
@@ -144,9 +148,18 @@ layout: default
 
     <p class="voice-stream__empty" data-stream-empty hidden>Aucune voix sur cette fréquence pour le moment.</p>
 
-    {% if paginator.total_pages > 1 %}
-      {% include post-paginator.html %}
-    {% endif %}
+    <div class="voice-stream__more" data-stream-more hidden>
+      <button type="button" class="voice-stream__more-button" data-stream-more-button aria-controls="voice-stream-list">
+        Afficher 20 de plus
+      </button>
+      <span data-stream-remaining></span>
+    </div>
+
+    <div data-stream-pagination>
+      {% if paginator.total_pages > 1 %}
+        {% include post-paginator.html %}
+      {% endif %}
+    </div>
   </section>
 
 </div>
